@@ -3,6 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './com
 import { Badge } from './components/ui/badge'
 import { Separator } from './components/ui/separator'
 import stevenImage from './data/steven.png'
+import sohumImage from './data/sohum.png'
 import './App.css'
 
 function App() {
@@ -298,15 +299,20 @@ function App() {
           
           <Card className="text-center">
             <CardContent className="pt-6">
-              <div className="w-24 h-24 bg-muted rounded-full mx-auto mb-4 flex items-center justify-center">
-                <span className="text-2xl text-muted-foreground">📷</span>
+              <div className="w-24 h-24 rounded-full mx-auto mb-4 overflow-hidden">
+              <img 
+                  src={sohumImage} 
+                  alt="Sohum" 
+                  className="w-full h-full object-cover object-center"
+                  style={{ objectPosition: 'center 20%' }}
+                />
               </div>
-              <h3 className="font-semibold text-lg mb-2">[Team Member 2]</h3>
+              <h3 className="font-semibold text-lg mb-2">Sohum Joshi</h3>
               <p className="text-sm text-muted-foreground">
-                [Role/Specialization]
+                Computer Vision Specialist
               </p>
               <p className="text-xs text-muted-foreground mt-2">
-                [Brief description of their contribution to the project]
+                Created and designed the website and worked on CV model.
               </p>
             </CardContent>
           </Card>
