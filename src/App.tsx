@@ -2,14 +2,15 @@ import { Button } from './components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './components/ui/card'
 import { Badge } from './components/ui/badge'
 import { Separator } from './components/ui/separator'
+import stevenImage from './data/steven.png'
 import './App.css'
 
 function App() {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background overflow-x-hidden">
       {/* Header */}
-      <header className="border-b">
-        <div className="container mx-auto px-6 py-4">
+      <header className="border-0 md:border-b">
+        <div className="container mx-auto px-4 md:px-6 py-4">
           <div className="flex items-center justify-between">
             <h1 className="text-2xl font-bold">ML Project Proposal</h1>
             <Badge variant="outline">CS 7641/4641</Badge>
@@ -18,7 +19,7 @@ function App() {
       </header>
 
       {/* Hero Section */}
-      <section className="py-16 px-6">
+      <section className="py-8 md:py-16 px-4 md:px-6">
         <div className="container mx-auto max-w-4xl text-center">
           <h2 className="text-4xl font-bold mb-4">
             [Your Project Title Here]
@@ -33,13 +34,13 @@ function App() {
       </section>
 
       {/* Main Content */}
-      <main className="container mx-auto max-w-6xl px-6 py-12">
+      <main className="container mx-auto max-w-6xl px-4 md:px-6 py-8 md:py-12">
         <div className="grid gap-8">
           
           {/* Introduction/Background Section */}
           <Card>
             <CardHeader>
-              <CardTitle className="flex items-center gap-2">
+              <CardTitle className="flex flex-wrap items-center gap-2">
                 Introduction & Background
                 <Badge variant="secondary">✓ Literature Review</Badge>
                 <Badge variant="secondary">✓ Dataset Description</Badge>
@@ -82,7 +83,7 @@ function App() {
           {/* Problem Definition Section */}
           <Card>
             <CardHeader>
-              <CardTitle className="flex items-center gap-2">
+              <CardTitle className="flex flex-wrap items-center gap-2">
                 Problem Definition
                 <Badge variant="secondary">✓ Problem</Badge>
                 <Badge variant="secondary">✓ Motivation</Badge>
@@ -110,7 +111,7 @@ function App() {
           {/* Methods Section */}
           <Card>
             <CardHeader>
-              <CardTitle className="flex items-center gap-2">
+              <CardTitle className="flex flex-wrap items-center gap-2">
                 Methods
                 <Badge variant="secondary">✓ 3+ Data Preprocessing</Badge>
                 <Badge variant="secondary">✓ 3+ ML Algorithms</Badge>
@@ -181,7 +182,7 @@ function App() {
           {/* Results and Discussion Section */}
           <Card>
             <CardHeader>
-              <CardTitle className="flex items-center gap-2">
+              <CardTitle className="flex flex-wrap items-center gap-2">
                 (Potential) Results & Discussion
                 <Badge variant="secondary">✓ 3+ Metrics</Badge>
                 <Badge variant="secondary">✓ Goals</Badge>
@@ -235,7 +236,7 @@ function App() {
           {/* References Section */}
           <Card>
             <CardHeader>
-              <CardTitle className="flex items-center gap-2">
+              <CardTitle className="flex flex-wrap items-center gap-2">
                 References
                 <Badge variant="secondary">✓ 3+ References</Badge>
                 <Badge variant="secondary">✓ In-Text Citations</Badge>
@@ -265,7 +266,7 @@ function App() {
       <Separator className="my-12" />
 
       {/* Team Members Section */}
-      <section className="container mx-auto max-w-6xl px-6 py-12">
+      <section className="container mx-auto max-w-6xl px-4 md:px-6 py-8 md:py-12">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold mb-4">Our Team</h2>
           <p className="text-muted-foreground">
@@ -277,15 +278,20 @@ function App() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
           <Card className="text-center">
             <CardContent className="pt-6">
-              <div className="w-24 h-24 bg-muted rounded-full mx-auto mb-4 flex items-center justify-center">
-                <span className="text-2xl text-muted-foreground">📷</span>
+              <div className="w-24 h-24 rounded-full mx-auto mb-4 overflow-hidden">
+                <img 
+                  src={stevenImage} 
+                  alt="Steven" 
+                  className="w-full h-full object-cover object-center"
+                  style={{ objectPosition: 'center 10%' }}
+                />
               </div>
-              <h3 className="font-semibold text-lg mb-2">[Team Member 1]</h3>
+              <h3 className="font-semibold text-lg mb-2">Steven</h3>
               <p className="text-sm text-muted-foreground">
-                [Role/Specialization - e.g., Data Scientist, ML Engineer]
+                Group Leader
               </p>
               <p className="text-xs text-muted-foreground mt-2">
-                [Brief description of their contribution to the project]
+                Helped on the project
               </p>
             </CardContent>
           </Card>
@@ -356,8 +362,8 @@ function App() {
       </section>
 
       {/* Footer */}
-      <footer className="border-t mt-16">
-        <div className="container mx-auto px-6 py-8 text-center">
+      <footer className="border-t mt-8 md:mt-16">
+        <div className="container mx-auto px-4 md:px-6 py-8 text-center">
           <p className="text-muted-foreground">
             © 2024 ML Project Team. All rights reserved.
           </p>
