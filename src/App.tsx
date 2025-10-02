@@ -288,7 +288,7 @@ function App() {
               </div>
               <h3 className="font-semibold text-lg mb-2">Steven</h3>
               <p className="text-sm text-muted-foreground">
-                Group Leader
+                Group Leader github test text
               </p>
               <p className="text-xs text-muted-foreground mt-2">
                 Helped on the project
