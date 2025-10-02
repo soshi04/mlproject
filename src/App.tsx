@@ -4,6 +4,7 @@ import { Badge } from './components/ui/badge'
 import { Separator } from './components/ui/separator'
 import stevenImage from './data/steven.png'
 import sohumImage from './data/sohum.png'
+import connorImage from './data/Connor_Smith.jpg'
 import './App.css'
 
 function App() {
@@ -49,6 +50,10 @@ function App() {
               </CardTitle>
               <CardDescription>
                 Provide an introduction of your topic and literature review of related work
+
+
+
+
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
@@ -352,15 +357,20 @@ function App() {
           
           <Card className="text-center">
             <CardContent className="pt-6">
-              <div className="w-24 h-24 bg-muted rounded-full mx-auto mb-4 flex items-center justify-center">
-                <span className="text-2xl text-muted-foreground">📷</span>
+              <div className="w-24 h-24 rounded-full mx-auto mb-4 overflow-hidden">
+                <img 
+                  src={connorImage} 
+                  alt="Steven" 
+                  className="w-full h-full object-cover object-center"
+                  style={{ objectPosition: 'center 10%' }}
+                />
               </div>
-              <h3 className="font-semibold text-lg mb-2">[Team Member 5]</h3>
+              <h3 className="font-semibold text-lg mb-2">Connor Smith</h3>
               <p className="text-sm text-muted-foreground">
-                [Role/Specialization]
+                [Role/Specialization] - idea guy
               </p>
               <p className="text-xs text-muted-foreground mt-2">
-                [Brief description of their contribution to the project]
+                Helped research final project topic and write proposal, 
               </p>
             </CardContent>
           </Card>
