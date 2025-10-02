@@ -381,7 +381,7 @@ function App() {
       <footer className="border-t mt-8 md:mt-16">
         <div className="container mx-auto px-4 md:px-6 py-8 text-center">
           <p className="text-muted-foreground">
-            © 2024 ML Project Team. All rights reserved.
+            © 2025 ML Project Team. All rights reserved.
           </p>
         </div>
       </footer>
