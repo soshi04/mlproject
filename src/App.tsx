@@ -10,7 +10,7 @@ import './App.css'
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/mlproject">
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/methods/normalization" element={<NormalizationPage />} />
