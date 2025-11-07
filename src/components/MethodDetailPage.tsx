@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Button } from './ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card'
@@ -7,9 +8,10 @@ interface MethodDetailPageProps {
   title: string
   description: string
   category: 'preprocessing' | 'algorithm'
+  children?: ReactNode
 }
 
-export function MethodDetailPage({ title, description, category }: MethodDetailPageProps) {
+export function MethodDetailPage({ title, description, category, children }: MethodDetailPageProps) {
   const navigate = useNavigate()
 
   return (
@@ -44,57 +46,61 @@ export function MethodDetailPage({ title, description, category }: MethodDetailP
             </span>
           </CardHeader>
           <CardContent className="space-y-8">
-            {/* Code Screenshot Section */}
-            <div>
-              <h3 className="text-2xl font-semibold mb-4">Code Implementation</h3>
-              <Separator className="mb-4" />
-              <div className="bg-muted rounded-lg p-6 border-2 border-dashed border-muted-foreground/20">
-                <div className="bg-background rounded border p-8">
-                  {/* Placeholder for code screenshot */}
-                  <p className="text-sm text-muted-foreground text-center mb-4">
-                    [Code Screenshot Placeholder - Add your screenshot here]
-                  </p>
-                  <div className="text-xs text-muted-foreground text-center space-y-1">
-                    <p>To add a screenshot, replace this placeholder with an img tag:</p>
-                    <code className="block bg-muted p-2 rounded text-left mt-2">
-                      {`<img 
-  src="/path/to/code-screenshot.png" 
-  alt="Code implementation for ${title}"
-  className="max-w-full h-auto rounded shadow-md"
+            {children ?? (
+              <>
+                {/* Code Screenshot Section */}
+                <div>
+                  <h3 className="text-2xl font-semibold mb-4">Code Implementation</h3>
+                  <Separator className="mb-4" />
+                  <div className="bg-muted rounded-lg p-6 border-2 border-dashed border-muted-foreground/20">
+                    <div className="bg-background rounded border p-8">
+                      {/* Placeholder for code screenshot */}
+                      <p className="text-sm text-muted-foreground text-center mb-4">
+                        [Code Screenshot Placeholder - Add your screenshot here]
+                      </p>
+                      <div className="text-xs text-muted-foreground text-center space-y-1">
+                        <p>To add a screenshot, replace this placeholder with an img tag:</p>
+                        <code className="block bg-muted p-2 rounded text-left mt-2">
+                          {`<img 
+src="/path/to/code-screenshot.png" 
+alt="Code implementation for ${title}"
+className="max-w-full h-auto rounded shadow-md"
 />`}
-                    </code>
+                        </code>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </div>
 
-            {/* Process Description Section */}
-            <div>
-              <h3 className="text-2xl font-semibold mb-4">Process & Methodology</h3>
-              <Separator className="mb-4" />
-              <div className="prose prose-sm max-w-none">
-                <div className="space-y-4">
-                  <div>
-                    <h4 className="font-semibold text-lg mb-2">Overview</h4>
-                    <p className="text-muted-foreground">
-                      [Describe the overall approach and rationale for this method]
-                    </p>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-lg mb-2">Implementation Details</h4>
-                    <p className="text-muted-foreground">
-                      [Describe the specific steps, parameters, and technical details of the implementation]
-                    </p>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-lg mb-2">Results & Impact</h4>
-                    <p className="text-muted-foreground">
-                      [Describe how this method contributed to the overall project, any metrics or improvements observed]
-                    </p>
+                {/* Process Description Section */}
+                <div>
+                  <h3 className="text-2xl font-semibold mb-4">Process & Methodology</h3>
+                  <Separator className="mb-4" />
+                  <div className="prose prose-sm max-w-none">
+                    <div className="space-y-4">
+                      <div>
+                        <h4 className="font-semibold text-lg mb-2">Overview</h4>
+                        <p className="text-muted-foreground">
+                          [Describe the overall approach and rationale for this method]
+                        </p>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-lg mb-2">Implementation Details</h4>
+                        <p className="text-muted-foreground">
+                          [Describe the specific steps, parameters, and technical details of the implementation]
+                        </p>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-lg mb-2">Results & Impact</h4>
+                        <p className="text-muted-foreground">
+                          [Describe how this method contributed to the overall project, any metrics or improvements observed]
+                        </p>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </div>
+              </>
+            )}
           </CardContent>
         </Card>
       </main>
