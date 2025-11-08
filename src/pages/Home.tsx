@@ -8,6 +8,8 @@ import sohumImage from '../data/sohum.png'
 import connorImage from '../data/Connor_Smith.jpg'
 import adamImage from '../data/adam.jpg'
 import yuhanImage from '../data/yuhan.jpg'
+import resultsOverlayImage from '../data/results_overlay.png'
+import resultsSegmentationImage from '../data/results_segmentation.png'
 
 export function Home() {
   const navigate = useNavigate()
@@ -117,7 +119,7 @@ export function Home() {
           <Card>
             <CardHeader>
               <CardTitle className="flex flex-wrap items-center gap-2">
-                Methods
+                Methods (Project Proposal)
                 <Badge variant="secondary">✓ 3+ Data Preprocessing</Badge>
                 <Badge variant="secondary">✓ 3+ ML Algorithms</Badge>
                 <Badge variant="secondary">✓ Learning Methods</Badge>
@@ -199,11 +201,53 @@ export function Home() {
             </CardContent>
           </Card>
 
+          {/* Segmentation Model Section */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex flex-wrap items-center gap-2">
+                Segmentation Model (Midterm Checkpoint)
+                <Badge variant="secondary">✓ Implementation</Badge>
+                <Badge variant="secondary">✓ Data Processing</Badge>
+                <Badge variant="secondary">✓ Model Architecture</Badge>
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              <div>
+                <h4 className="font-semibold mb-3">Data Preprocessing Method</h4>
+                <p className="text-muted-foreground mb-3">
+                  We utilized the PyTorch framework and leveraged torchvision's transforms for data preprocessing, which provides convenience and efficiency.
+                </p>
+                <p className="text-muted-foreground mb-3">
+                  The data processing for the segmentation model was straightforward: we performed image resizing (uniformly cropped to 224×224 pixels) and normalized each channel of the data.
+                </p>
+                <p className="text-muted-foreground">
+                  For normalization, we used the mean and standard deviation values from ImageNet. ImageNet is a highly recognized large-scale 2D dataset, making its statistical parameters reliable and widely adopted for transfer learning.
+                </p>
+              </div>
+              
+              <div>
+                <h4 className="font-semibold mb-3">Model Implementation</h4>
+                <p className="text-muted-foreground mb-3">
+                  We implemented a UNet-like architecture. Through literature review of fundus-related models, we found that many segmentation models employ UNet architectures.
+                </p>
+                <p className="text-muted-foreground mb-3">
+                  UNet utilizes an encoder-decoder structure that first downsamples to extract feature information, then upsamples to restore the original image dimensions, performing pixel-wise classification.
+                </p>
+                <p className="text-muted-foreground mb-3">
+                  We designed a four-layer encoder and four-layer decoder, where each layer consists of convolutional blocks and max pooling operations. The convolutional blocks include Conv2d, BatchNorm2d, and ReLU activation functions, which effectively extract features and prevent overfitting.
+                </p>
+                <p className="text-muted-foreground">
+                  We employed CrossEntropyLoss as our loss function for multi-class segmentation.
+                </p>
+              </div>
+            </CardContent>
+          </Card>
+
           {/* Results and Discussion Section */}
           <Card>
             <CardHeader>
               <CardTitle className="flex flex-wrap items-center gap-2">
-                (Potential) Results & Discussion
+                Results & Discussion
                 <Badge variant="secondary">✓ 3+ Metrics</Badge>
                 <Badge variant="secondary">✓ Goals</Badge>
                 <Badge variant="secondary">✓ Expected Results</Badge>
@@ -211,40 +255,79 @@ export function Home() {
             </CardHeader>
             <CardContent className="space-y-4">
               <div>
-                <h4 className="font-semibold mb-3">Quantitative Metrics</h4>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  <div className="p-4 border rounded-lg text-center">
-                    <h5 className="font-medium mb-2">Metric 1: Accuracy</h5>
+                <h4 className="font-semibold mb-3">Visualizations</h4>
+                <p className="text-muted-foreground mb-4">
+                  The following visualizations demonstrate our model's performance:
+                </p>
+                <div className="space-y-6">
+                  <div className="p-4 border rounded-lg">
+                    <h5 className="font-medium mb-3">Overlay Results</h5>
+                    <div className="mb-3 overflow-hidden rounded-lg">
+                      <img 
+                        src={resultsOverlayImage} 
+                        alt="Results Overlay - Predicted segmentation masks overlaid on original fundus images" 
+                        className="w-full h-auto object-contain"
+                      />
+                    </div>
                     <p className="text-sm text-muted-foreground">
-                    Percent of images correctly classified by the CNN.
+                      Shows the overlay of predicted segmentation masks on original fundus images
                     </p>
                   </div>
-                  <div className="p-4 border rounded-lg text-center">
-                    <h5 className="font-medium mb-2">Metric 2: Dice Score</h5>
+                  <div className="p-4 border rounded-lg">
+                    <h5 className="font-medium mb-3">Segmentation Comparison</h5>
+                    <div className="mb-3 overflow-hidden rounded-lg">
+                      <img 
+                        src={resultsSegmentationImage} 
+                        alt="Results Segmentation - Side-by-side comparison of ground truth and predicted segmentation masks" 
+                        className="w-full h-auto object-contain"
+                      />
+                    </div>
                     <p className="text-sm text-muted-foreground">
-                    Overlap between predicted and ground-truth vessel masks for segmentation.
-                    </p>
-                  </div>
-                  <div className="p-4 border rounded-lg text-center">
-                    <h5 className="font-medium mb-2">Metric 3: F1-Score</h5>
-                    <p className="text-sm text-muted-foreground">
-                    Harmonic mean of precision and recall for classification.
+                      Displays side-by-side comparison of ground truth and predicted segmentation masks
                     </p>
                   </div>
                 </div>
               </div>
-              
+
               <div>
-                <h4 className="font-semibold mb-2">Project Goals</h4>
-                <p className="text-muted-foreground">
-                Achieve ≥90% classification accuracy on ODIR-5K, a Dice score ≥0.80 on vessel segmentation, and F1-score ≥0.85 across classes. Ensure reproducible training, documentable preprocessing, and ethical considerations (fairness across demographics, data privacy, and appropriate clinical disclaimers).
+                <h4 className="font-semibold mb-3">Quantitative Metrics</h4>
+                <p className="text-muted-foreground mb-4">
+                  We evaluated our model using standard segmentation metrics: Accuracy, IoU (Intersection over Union), and Dice Score.
+                </p>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="p-4 border rounded-lg">
+                    <h5 className="font-medium mb-2">Test Loss: 0.0894</h5>
+                    <h5 className="font-medium mb-2">Pixel Accuracy: 0.9758</h5>
+                  </div>
+                  <div className="p-4 border rounded-lg">
+                    <h5 className="font-medium mb-2">IoU Score: 0.7010</h5>
+                    <p className="text-xs text-muted-foreground mb-2">IoU = TP / (TP + FP + FN)</p>
+                    <h5 className="font-medium mb-2">Dice Score: 0.8242</h5>
+                    <p className="text-xs text-muted-foreground">Dice = 2×TP / (2×TP + FP + FN) = 2×IoU / (1 + IoU)</p>
+                  </div>
+                </div>
+                <p className="text-xs text-muted-foreground mt-2">
+                  Where TP = True Positives, FP = False Positives, FN = False Negatives
                 </p>
               </div>
               
               <div>
-                <h4 className="font-semibold mb-2">Expected Results</h4>
+                <h4 className="font-semibold mb-2">Analysis of Segmentation Model Performance</h4>
                 <p className="text-muted-foreground">
-                Based on prior work, we expect contrast-enhanced preprocessing plus CNN backbones to yield strong classification, and a ViT-encoder/CNN-decoder to produce competitive vessel masks on the segmentation dataset. Incorporating textual clinical notes may further improve class separability for ambiguous cases.
+                  The Dice score achieved our proposal's expectation of exceeding 0.8, indicating strong segmentation performance. The visualization results also demonstrate excellent qualitative outcomes with clear boundary delineation and accurate region identification.
+                </p>
+                <p className="text-muted-foreground mt-2">
+                  Our model training was highly efficient, requiring only 10 epochs and approximately 20 minutes of training time, demonstrating good convergence properties and computational efficiency.
+                </p>
+              </div>
+              
+              <div>
+                <h4 className="font-semibold mb-2">Next Steps and Future Work</h4>
+                <p className="text-muted-foreground">
+                  According to our initial proposal, we planned to implement a Vision Transformer (ViT) for the segmentation task. However, due to our limited familiarity with ViT architectures, we decided to first establish a baseline using CNN-based approaches.
+                </p>
+                <p className="text-muted-foreground mt-2">
+                  Moving forward, we will implement and compare ViT-based segmentation models to potentially achieve improved performance and explore the effectiveness of attention mechanisms for fundus image segmentation.
                 </p>
               </div>
             </CardContent>
@@ -405,6 +488,122 @@ export function Home() {
             </CardContent>
           </Card>
         </div>
+      </section>
+
+      <Separator className="my-12" />
+
+      {/* Gantt Chart Section */}
+      <section className="container mx-auto max-w-6xl px-4 md:px-6 py-8 md:py-12">
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex flex-wrap items-center gap-2">
+              Gantt Chart (Midterm Checkpoint)
+              <Badge variant="secondary">✓ Timeline</Badge>
+              <Badge variant="secondary">✓ Responsibilities</Badge>
+            </CardTitle>
+            <CardDescription>
+              Project timeline and member responsibilities after proposal submission - through November 7th (first 3 weeks of implementation)
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="overflow-x-auto">
+              <table className="w-full border-collapse border border-gray-300">
+                <thead>
+                  <tr className="bg-gray-100">
+                    <th className="border border-gray-300 p-2 text-left">Team Member</th>
+                    <th className="border border-gray-300 p-2 text-center">Week 1<br/>(Oct 14-20)</th>
+                    <th className="border border-gray-300 p-2 text-center">Week 2<br/>(Oct 21-27)</th>
+                    <th className="border border-gray-300 p-2 text-center">Week 3<br/>(Oct 28-Nov 7)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td className="border border-gray-300 p-2 font-medium">Steven Murley</td>
+                    <td className="border border-gray-300 p-2 text-sm text-gray-400">To be filled</td>
+                    <td className="border border-gray-300 p-2 text-sm text-gray-400">To be filled</td>
+                    <td className="border border-gray-300 p-2 text-sm text-gray-400">To be filled</td>
+                  </tr>
+                  <tr>
+                    <td className="border border-gray-300 p-2 font-medium">Sohum Joshi</td>
+                    <td className="border border-gray-300 p-2 text-sm text-gray-400">To be filled</td>
+                    <td className="border border-gray-300 p-2 text-sm text-gray-400">To be filled</td>
+                    <td className="border border-gray-300 p-2 text-sm text-gray-400">To be filled</td>
+                  </tr>
+                  <tr>
+                    <td className="border border-gray-300 p-2 font-medium">Adam Bakr</td>
+                    <td className="border border-gray-300 p-2 text-sm text-gray-400">To be filled</td>
+                    <td className="border border-gray-300 p-2 text-sm text-gray-400">To be filled</td>
+                    <td className="border border-gray-300 p-2 text-sm text-gray-400">To be filled</td>
+                  </tr>
+                  <tr>
+                    <td className="border border-gray-300 p-2 font-medium">Yuhan Wei</td>
+                    <td className="border border-gray-300 p-2 text-sm">Research Methods, Literature</td>
+                    <td className="border border-gray-300 p-2 text-sm">Segmentation Implementation</td>
+                    <td className="border border-gray-300 p-2 text-sm">Model Training & Evaluation</td>
+                  </tr>
+                  <tr>
+                    <td className="border border-gray-300 p-2 font-medium">Connor Smith</td>
+                    <td className="border border-gray-300 p-2 text-sm text-gray-400">To be filled</td>
+                    <td className="border border-gray-300 p-2 text-sm text-gray-400">To be filled</td>
+                    <td className="border border-gray-300 p-2 text-sm text-gray-400">To be filled</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </CardContent>
+        </Card>
+      </section>
+
+      {/* Contribution Table Section */}
+      <section className="container mx-auto max-w-6xl px-4 md:px-6 py-8 md:py-12">
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex flex-wrap items-center gap-2">
+              Contribution Table (Midterm Checkpoint)
+              <Badge variant="secondary">✓ Individual Contributions</Badge>
+              <Badge variant="secondary">✓ Detailed Breakdown</Badge>
+            </CardTitle>
+            <CardDescription>
+              Explicit contributions of each team member in preparing the midterm checkpoint
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-6">
+              <div className="grid grid-cols-1 gap-4">
+                <div className="border rounded-lg p-4">
+                  <h4 className="font-semibold mb-2">Steven Murley</h4>
+                  <p className="text-sm text-gray-400">To be filled</p>
+                </div>
+                
+                <div className="border rounded-lg p-4">
+                  <h4 className="font-semibold mb-2">Sohum Joshi</h4>
+                  <p className="text-sm text-gray-400">To be filled</p>
+                </div>
+                
+                <div className="border rounded-lg p-4">
+                  <h4 className="font-semibold mb-2">Adam Bakr</h4>
+                  <p className="text-sm text-gray-400">To be filled</p>
+                </div>
+                
+                <div className="border rounded-lg p-4">
+                  <h4 className="font-semibold mb-2">Yuhan Wei</h4>
+                  <ul className="text-sm text-muted-foreground space-y-1">
+                    <li>• Modified classification preprocessing methods to adapt for segmentation tasks</li>
+                    <li>• Implemented and trained the segmentation model from scratch</li>
+                    <li>• Analyzed training results using different metrics and iteratively improved model performance</li>
+                    <li>• Visualized segmentation results</li>
+                    <li>• Documented the segmentation-related implementation in our team website</li>
+                  </ul>
+                </div>
+                
+                <div className="border rounded-lg p-4">
+                  <h4 className="font-semibold mb-2">Connor Smith</h4>
+                  <p className="text-sm text-gray-400">To be filled</p>
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
       </section>
 
       {/* Footer */}
